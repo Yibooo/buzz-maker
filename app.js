@@ -73,7 +73,8 @@ async function onGenerate() {
     const data = await res.json();
 
     if (!res.ok || !data.success) {
-      throw new Error(data.error || `API Error (${res.status})`);
+      const detail = data.detail ? `\n[詳細] ${data.detail}` : "";
+      throw new Error((data.error || `API Error (${res.status})`) + detail);
     }
 
     displayResults(data.posts);
