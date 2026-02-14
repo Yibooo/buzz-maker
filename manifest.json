@@ -1,0 +1,16 @@
+{
+  "name": "BUZZメーカー",
+  "short_name": "BUZZメーカー",
+  "description": "独り言をバズるXポストに変換するAIアプリ",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fafaf9",
+  "theme_color": "#f59e0b",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BUZZメーカー - 独り言をバズるポストに変換</title>
+<meta name="description" content="あなたの独り言や思いつきを、Xでバズるポストに自動変換。AIが共感型・意外性型・ストーリー型の3パターンを瞬時に生成。">
+<meta name="theme-color" content="#f59e0b">
+
+<!-- OGP -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="BUZZメーカー">
+<meta property="og:description" content="独り言をバズるXポストに変換するAIアプリ">
+<meta property="og:url" content="https://buzz-maker.pages.dev">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Favicon & PWA -->
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <h1><span class="logo-icon">&#x1F41D;</span> BUZZメーカー</h1>
+    <p class="tagline">独り言 → バズるポスト</p>
+  </div>
+</header>
+
+<!-- Main Content -->
+<main>
+  <!-- Input Section -->
+  <section class="input-section">
+    <label for="userInput" class="input-label">あなたの独り言・思いつきを入力</label>
+    <textarea
+      id="userInput"
+      class="input-textarea"
+      placeholder="例: 今日カフェで仕事してたら隣の人がめっちゃ集中してて自分もやる気出た"
+      maxlength="500"
+      rows="4"
+    ></textarea>
+    <div class="input-footer">
+      <span id="charCount" class="char-count">0 / 500</span>
+      <button id="generateBtn" class="btn-generate" disabled>
+        <span class="btn-icon">&#x1F41D;</span>
+        <span>バズらせる</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Loading -->
+  <div id="loading" class="loading" hidden>
+    <div class="loading-spinner"></div>
+    <p>AIがバズるポストを生成中...</p>
+  </div>
+
+  <!-- Results Section -->
+  <section id="results" class="results-section" hidden>
+    <h2 class="section-title">生成結果</h2>
+    <div id="resultCards" class="result-cards">
+      <!-- Cards rendered by JS -->
+    </div>
+  </section>
+
+  <!-- History Section -->
+  <section id="historySection" class="history-section" hidden>
+    <div class="history-header">
+      <h2 class="section-title">&#x1F4CB; 生成履歴</h2>
+      <button id="clearHistoryBtn" class="btn-text-danger">全削除</button>
+    </div>
+    <div id="historyList" class="history-list">
+      <!-- History items rendered by JS -->
+    </div>
+  </section>
+</main>
+
+<!-- Toast -->
+<div id="toast" class="toast" hidden></div>
+
+<!-- Error Banner -->
+<div id="errorBanner" class="error-banner" hidden></div>
+
+<footer>
+  <p>Powered by Gemini AI &middot; BUZZメーカー</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
