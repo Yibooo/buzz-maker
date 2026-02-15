@@ -95,24 +95,56 @@ function displayResults(posts) {
 
   const typeIcons = {
     "共感型": "🤝",
-    "意外性型": "💡",
+    "逆張り型": "🔥",
+    "数字・実績型": "📊",
+    "問いかけ型": "❓",
     "ストーリー型": "📖",
+    "保存させる型": "🔖",
+    "一言パンチ型": "💥",
   };
 
-  posts.forEach((post, i) => {
+  // Sort by total buzz score (highest first)
+  const sorted = [...posts].map((p, i) => ({ ...p, _origIdx: i }));
+  sorted.sort((a, b) => {
+    const scoreA = (a.buzzScore?.hook || 0) + (a.buzzScore?.emotion || 0) + (a.buzzScore?.share || 0);
+    const scoreB = (b.buzzScore?.hook || 0) + (b.buzzScore?.emotion || 0) + (b.buzzScore?.share || 0);
+    return scoreB - scoreA;
+  });
+
+  sorted.forEach((post, i) => {
+    const bs = post.buzzScore || { hook: 3, emotion: 3, share: 3 };
+    const total = bs.hook + bs.emotion + bs.share;
+    const isTop = i === 0;
+
     const card = document.createElement("div");
-    card.className = "result-card";
+    card.className = `result-card${isTop ? " result-card-top" : ""}`;
     card.innerHTML = `
+      ${isTop ? '<div class="top-badge">👑 BEST BUZZ</div>' : ""}
       <div class="result-card-header">
         <span class="result-type">${typeIcons[post.type] || "✨"} ${escapeHtml(post.type)}</span>
-        <button class="btn-copy" data-index="${i}">
-          <span>📋</span> コピー
-        </button>
+        <div class="buzz-score" title="バズスコア: ${total}/15">
+          <span class="buzz-score-label">BUZZ</span>
+          <span class="buzz-score-value">${total}</span>
+          <span class="buzz-score-max">/15</span>
+        </div>
+      </div>
+      <div class="buzz-score-detail">
+        <span title="フックの強さ">🎣 ${bs.hook}</span>
+        <span title="感情喚起度">💗 ${bs.emotion}</span>
+        <span title="シェア誘導度">🔄 ${bs.share}</span>
       </div>
       <div class="result-text">${escapeHtml(post.text)}</div>
       <div class="result-tip">
         <span class="result-tip-icon">💡</span>
         <span>${escapeHtml(post.tip)}</span>
+      </div>
+      <div class="result-actions">
+        <button class="btn-copy" data-index="${post._origIdx}">
+          <span>📋</span> コピー
+        </button>
+        <a class="btn-x-share" href="https://x.com/intent/tweet?text=${encodeURIComponent(post.text)}" target="_blank" rel="noopener">
+          <span>𝕏</span> ポストする
+        </a>
       </div>
     `;
     resultCards.appendChild(card);

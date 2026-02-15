@@ -278,6 +278,104 @@ main {
   margin-top: 1px;
 }
 
+/* ===== BEST BUZZ Badge ===== */
+.result-card-top {
+  border: 2px solid var(--primary);
+  position: relative;
+}
+
+.top-badge {
+  position: absolute;
+  top: -12px;
+  left: 16px;
+  background: var(--primary);
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 2px 12px;
+  border-radius: 100px;
+  letter-spacing: 0.05em;
+}
+
+/* ===== Buzz Score ===== */
+.buzz-score {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+  background: var(--accent);
+  color: var(--primary);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  font-family: "SF Mono", "Menlo", monospace;
+}
+
+.buzz-score-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  margin-right: 4px;
+  color: #fff;
+}
+
+.buzz-score-value {
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.buzz-score-max {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.buzz-score-detail {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.buzz-score-detail span {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* ===== Result Actions (Copy + X Share) ===== */
+.result-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.btn-x-share {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 6px 16px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-x-share:hover {
+  background: #333;
+  transform: translateY(-1px);
+}
+
+.btn-x-share span:first-child {
+  font-size: 1rem;
+  font-weight: 900;
+}
+
 /* ===== History ===== */
 .history-section {
   margin-top: 32px;
